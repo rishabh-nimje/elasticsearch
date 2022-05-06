@@ -8,10 +8,7 @@ Material reference - [YouTube](https://www.youtube.com/watch?v=gS_nHTWZEJ8&list=
 * Basic Operations
 * CRUD Operations
 
-<br>
-
 ## Basic Operations
-<br>
 
 ### Get info about cluster health
 
@@ -38,7 +35,6 @@ Response from Elasticsearch -
   "active_shards_percent_as_number" : 100.0
 }
 ```
-<br>
 
 ### Get info about nodes in a cluster
 ```
@@ -77,10 +73,8 @@ Response from Elasticsearch -
       .
       .
 ```
-<br>
 
 ## CRUD Operations
-<br>
 
 ## Create
 
@@ -105,7 +99,7 @@ When indexing a document, both HTTP verbs POST or PUT can be used.
 POST favorite_car/_doc
 {
   "first_name": "Adam",
-  "candy": "Ford Raptor"
+  "car": "Ford Raptor"
 }
 ```
 Response from Elasticsearch - 
@@ -129,7 +123,7 @@ Response from Elasticsearch -
 PUT favorite_car/_doc/1
 {
   "first_name": "Betty",
-  "candy": "Viper"
+  "car": "Viper"
 }
 ```
 Response from Elasticsearch - 
@@ -156,7 +150,7 @@ When you index a document with an existing id, the existing document gets overwr
 PUT favorite_car/_create/1
 {
   "first_name": "Finn",
-  "candy": "Range Rover"
+  "car": "Range Rover"
 }
 ```
 We already have a document with id = 1
@@ -201,7 +195,7 @@ Response from Elasticsearch -
   "found" : true,
   "_source" : {
     "first_name" : "Betty",
-    "candy" : "Viper"
+    "car" : "Viper"
   }
 }
 ```
@@ -213,7 +207,7 @@ Response from Elasticsearch -
 POST favorite_car/_update/1
 {
   "doc": {
-    "candy": "Maserati"
+    "car": "Maserati"
   }
 }
 ```
