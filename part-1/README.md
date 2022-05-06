@@ -254,17 +254,263 @@ Response from Elasticsearch -
 ## ASSIGNMENT
 
 1. Create an index called places.
+```
+PUT places
+
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "places"
+}
+```
 2. Pick five of the places you want to visit after the pandemic is over. For each place, index a document containing the name and the country.
+```
+PUT places/_create/1
+{
+  "name": "Rishabh",
+  "country": "Bali"
+}
+
+{
+  "_index" : "places",
+  "_id" : "1",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 0,
+  "_primary_term" : 1
+}
+```
+```
+PUT places/_create/2
+{
+  "name": "Rishabh",
+  "country": "UAE"
+}
+
+{
+  "_index" : "places",
+  "_id" : "2",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 1,
+  "_primary_term" : 1
+}
+```
+```
+PUT places/_create/3
+{
+  "name": "Rishabh",
+  "country": "Norway"
+}
+
+{
+  "_index" : "places",
+  "_id" : "3",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 2,
+  "_primary_term" : 1
+}
+```
+```
+PUT places/_create/4
+{
+  "name": "Rishabh",
+  "country": "UK"
+}
+
+{
+  "_index" : "places",
+  "_id" : "4",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 3,
+  "_primary_term" : 1
+}
+```
+```
+PUT places/_create/5
+{
+  "name": "Rishabh",
+  "country": "Sweden"
+}
+
+{
+  "_index" : "places",
+  "_id" : "5",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 4,
+  "_primary_term" : 1
+}
+```
+
 3. Read(GET) each document to check the content of the document.
+```
+GET places/_doc/3
+
+{
+  "_index" : "places",
+  "_id" : "3",
+  "_version" : 1,
+  "_seq_no" : 2,
+  "_primary_term" : 1,
+  "found" : true,
+  "_source" : {
+    "name" : "Rishabh",
+    "country" : "Norway"
+  }
+}
+```
+
 4. Update a field of a document.
+```
+POST places/_update/4
+{
+  "doc": {
+    "country": "Thailand"
+  }
+}
+
+{
+  "_index" : "places",
+  "_id" : "4",
+  "_version" : 2,
+  "result" : "updated",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 5,
+  "_primary_term" : 1
+}
+```
+
 5. Read(GET) the updated document to ensure that the field has been updated.
+```
+GET places/_doc/4
+
+{
+  "_index" : "places",
+  "_id" : "4",
+  "_version" : 2,
+  "_seq_no" : 5,
+  "_primary_term" : 1,
+  "found" : true,
+  "_source" : {
+    "name" : "Rishabh",
+    "country" : "Thailand"
+  }
+}
+```
 6. Delete a document of one place.
+```
+DELETE places/_doc/4
+
+{
+  "_index" : "places",
+  "_id" : "4",
+  "_version" : 3,
+  "result" : "deleted",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 6,
+  "_primary_term" : 1
+}
+```
+
 7. Copy and paste the following request to return all documents from the places index. This is a great way to check whether all the CRUD operations you have performed thus far have worked!
 ```
 GET places/_search
 {
   "query": {
     "match_all": {}
+  }
+}
+```
+```
+{
+  "took" : 397,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 4,
+      "relation" : "eq"
+    },
+    "max_score" : 1.0,
+    "hits" : [
+      {
+        "_index" : "places",
+        "_id" : "1",
+        "_score" : 1.0,
+        "_source" : {
+          "name" : "Rishabh",
+          "country" : "Bali"
+        }
+      },
+      {
+        "_index" : "places",
+        "_id" : "2",
+        "_score" : 1.0,
+        "_source" : {
+          "name" : "Rishabh",
+          "country" : "UAE"
+        }
+      },
+      {
+        "_index" : "places",
+        "_id" : "3",
+        "_score" : 1.0,
+        "_source" : {
+          "name" : "Rishabh",
+          "country" : "Norway"
+        }
+      },
+      {
+        "_index" : "places",
+        "_id" : "5",
+        "_score" : 1.0,
+        "_source" : {
+          "name" : "Rishabh",
+          "country" : "Sweden"
+        }
+      }
+    ]
   }
 }
 ```
